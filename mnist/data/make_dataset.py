@@ -25,6 +25,9 @@ if __name__ == '__main__':
     train_images = transform(train_images)
     test_images = transform(test_images)
 
+    train_images = train_images.unsqueeze(1)
+    test_images = test_images.unsqueeze(1)
+
     torch.save(train_images, str(processed_path / "train_images.pt"))
     torch.save(train_labels, str(processed_path / "train_target.pt"))
     torch.save(test_images, str(processed_path / "test_images.pt"))
