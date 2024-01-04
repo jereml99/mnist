@@ -14,7 +14,13 @@ from mnist.models.model import MyAwesomeModel
 @click.option("--epochs", default=20, help="number of epochs to train for")
 @click.option("--batch_size", default=256, help="batch size to use for training")
 def train(lr, epochs, batch_size):
-    """Train a model on MNIST."""
+    """
+        Train a model on the MNIST dataset.
+        Args:
+            lr: learning rate to use for training
+            epochs: number of epochs to train for
+            batch_size: batch size to use for training
+    """
     print("Training day and night")
     print(lr)
 
