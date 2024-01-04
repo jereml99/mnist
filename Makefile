@@ -44,6 +44,10 @@ data: requirements
 train: requirements
 	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/train_model.py
 
+## Predict model
+predict: requirements
+	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/predict_model.py $(model) $(data)
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
