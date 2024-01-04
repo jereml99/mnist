@@ -48,6 +48,10 @@ train: requirements
 predict: requirements
 	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/predict_model.py $(model) $(data)
 
+## Visulaize model
+visualize: requirements
+	$(PYTHON_INTERPRETER) $(PROJECT_NAME)/visualizations/visualize.py $(model)
+
 #################################################################################
 # Documentation RULES                                                           #
 #################################################################################
