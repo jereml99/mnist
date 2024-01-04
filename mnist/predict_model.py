@@ -1,25 +1,25 @@
-import torch
-import click
-import numpy as np
 import os
 import pickle
+
+import click
+import numpy as np
+import torch
 from torch.utils.data import DataLoader
 
-def predict(
-    model: torch.nn.Module,
-    dataloader: torch.utils.data.DataLoader
-) -> torch.Tensor:
+
+def predict(model: torch.nn.Module, dataloader: torch.utils.data.DataLoader) -> torch.Tensor:
     """Run prediction for a given model and dataloader.
-    
+
     Args:
         model: model to use for prediction
         dataloader: dataloader with batches
-    
+
     Returns
         Tensor of shape [N, d] where N is the number of samples and d is the output dimension of the model
 
     """
     return torch.cat([model(batch) for batch in dataloader], 0)
+
 
 @click.command()
 @click.argument("model_checkpoint")
@@ -48,10 +48,10 @@ def predict_model(model_checkpoint, data_path):
     #     test_set = YourDatasetClass(images, labels)  # Replace YourDatasetClass with the appropriate dataset class
     #     test_data_loader = DataLoader(test_set, batch_size=256, shuffle=True)
 
-
     # with torch.no_grad():
     #      print(predict(model, test_data_loader))
     raise NotImplementedError("Loading images from a numpy or pickle file is not implemented yet")
+
 
 if __name__ == "__main__":
     predict_model()

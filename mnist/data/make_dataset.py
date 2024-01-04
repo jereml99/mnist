@@ -1,17 +1,15 @@
 import glob
 from pathlib import Path
+
 import torch
 
-if __name__ == '__main__':
-
+if __name__ == "__main__":
     import torchvision.transforms as transforms
 
-    transform = transforms.Compose([
-        transforms.Normalize(0, 1)
-    ])
+    transform = transforms.Compose([transforms.Normalize(0, 1)])
 
-    raw_path = Path( "data") / "raw"
-    processed_path = Path( "data")/ "processed"
+    raw_path = Path("data") / "raw"
+    processed_path = Path("data") / "processed"
 
     train_images = [torch.load(train_file) for train_file in glob.glob(str(raw_path / "train_images_*.pt"))]
     train_labels = [torch.load(train_file) for train_file in glob.glob(str(raw_path / "train_target_*.pt"))]

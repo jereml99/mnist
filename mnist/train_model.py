@@ -1,12 +1,11 @@
 from pathlib import Path
-import torch
+
 import click
+import torch
 from torch.utils.data import DataLoader
+
 from mnist.data.dataloader import make_training_dataloader
 from mnist.models.model import MyAwesomeModel
-
-
-
 
 
 @click.command()
@@ -15,11 +14,11 @@ from mnist.models.model import MyAwesomeModel
 @click.option("--batch_size", default=256, help="batch size to use for training")
 def train(lr, epochs, batch_size):
     """
-        Train a model on the MNIST dataset.
-        Args:
-            lr: learning rate to use for training
-            epochs: number of epochs to train for
-            batch_size: batch size to use for training
+    Train a model on the MNIST dataset.
+    Args:
+        lr: learning rate to use for training
+        epochs: number of epochs to train for
+        batch_size: batch size to use for training
     """
     print("Training day and night")
     print(lr)
@@ -40,9 +39,10 @@ def train(lr, epochs, batch_size):
             loss.backward()
             optimizer.step()
         print(f"Epoch: {epoch} Loss: {loss}")
-        
+
     model_dir = Path(f"models/{model._get_name()}.pt")
     torch.save(model, model_dir)
 
-if __name__ == '__main__':
-   train()
+
+if __name__ == "__main__":
+    train()

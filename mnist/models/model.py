@@ -7,12 +7,12 @@ class MyAwesomeModel(nn.Module):
     def __init__(self):
         super().__init__()
         self.model = nn.Sequential(
-            nn.Linear(784, 128), # [B, ]
+            nn.Linear(784, 128),  # [B, ]
             nn.ReLU(),
-            nn.Linear(128, 10)
-        ) 
+            nn.Linear(128, 10),
+        )
 
     def forward(self, x):
         """Forward pass of the model."""
-        
+
         return self.model(x.flatten(1))
