@@ -21,6 +21,7 @@ def train(lr, epochs, batch_size):
         batch_size: batch size to use for training
     """
     print("Training day and night")
+    print(f"cuda available: {torch.cuda.is_available()}")
     print(lr)
 
     model = MyAwesomeModel()
