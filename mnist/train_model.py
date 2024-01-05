@@ -40,7 +40,10 @@ def train(lr, epochs, batch_size):
             optimizer.step()
         print(f"Epoch: {epoch} Loss: {loss}")
 
+
     model_dir = Path(f"models/{model._get_name()}.pt")
+    if not model_dir.parent.exists():
+        model_dir.parent.mkdir(parents=True)
     torch.save(model, model_dir)
 
 
