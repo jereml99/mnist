@@ -31,6 +31,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - uses: iterative/setup-dvc@v1
+    - name: Get data
+      run: dvc pull
+      env:
+        GDRIVE_CREDENTIALS_DATA: ${{ secrets.GDRIVE_CREDENTIALS_DATA }}
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
