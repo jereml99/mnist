@@ -1,9 +1,4 @@
-FROM nvcr.io/nvidia/pytorch:23.10-py3
-
-# install python
-RUN apt update && \
-    apt install --no-install-recommends -y build-essential gcc && \
-    apt clean && rm -rf /var/lib/apt/lists/*
+FROM python:3.10-slim-buster
 
 WORKDIR /
 COPY requirements.txt requirements.txt
@@ -12,10 +7,12 @@ COPY mnist/ mnist/
 COPY data/ data/
 COPY Makefile Makefile
 
-WORKDIR /
+RUN apt-get update && \
+    apt-get install --no-install-recommends -y build-essential gcc && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install -e . --no-deps --no-cache-dir
-
 
 ENTRYPOINT ["python", "-u", "mnist/train_model.py"]
