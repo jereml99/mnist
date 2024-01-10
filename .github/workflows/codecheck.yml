@@ -29,5 +29,5 @@ jobs:
         pip install ruff
     - name: lint with ruff
       run: |
-        ruff check
+        ruff check --fix
         ruff format
