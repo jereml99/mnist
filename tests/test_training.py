@@ -1,7 +1,10 @@
 from pathlib import Path
+
 import torch
-from mnist.train_model import train
 from click.testing import CliRunner
+
+from mnist.train_model import train
+
 
 def test_train():
     lr = "0.001"

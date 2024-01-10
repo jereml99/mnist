@@ -1,4 +1,5 @@
 from collections import Counter
+
 from mnist.data.dataloader import make_training_dataloader
 
 
@@ -12,4 +13,4 @@ def test_data():
         assert data.shape == (batch_size, 1, 28, 28)
         label_counter.update(label.tolist())
 
-    assert len(label_counter) == 10 # we have 10 diffrent digits in the dataset
+    assert len(label_counter) == 10  # we have 10 diffrent digits in the dataset
