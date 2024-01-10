@@ -46,6 +46,7 @@ jobs:
     - name: Train model
       run: |
         pip install -r requirements.txt  # install dependencies
+        ls -la
         python train_model.py  # run training
     - name: Write report
       env:
