@@ -42,6 +42,20 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - uses: iterative/setup-cml@v1
+    - name: Train model
+      run: |
+        pip install -r requirements.txt  # install dependencies
+        python train.py  # run training
+    - name: Write report
+      env:
+        # this authenticates that the right permissions are in place
+        REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # send all information to report.md that will be reported to us when the workflow finish
+        cat classification_report.txt >> report.md
+        cml-publish confusion_matrix.png --md >> report.md
+        cml-send-comment report.md
     # disabled becouse of long build time
     # - name: Build the Docker image
     #   run: |
