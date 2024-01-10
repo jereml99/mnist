@@ -46,6 +46,28 @@ def train(lr, epochs, batch_size):
         model_dir.parent.mkdir(parents=True)
     torch.save(model, model_dir)
 
+    import matplotlib.pyplot as plt
+    from sklearn.metrics import ConfusionMatrixDisplay, classification_report, confusion_matrix
+
+    preds, target = [], []
+    for batch in train_data_loader:
+        x, y = batch
+        probs = model(x)
+        preds.append(probs.argmax(dim=-1))
+        target.append(y.detach())
+
+    target = torch.cat(target, dim=0)
+    preds = torch.cat(preds, dim=0)
+
+    report = classification_report(target, preds)
+    with open("classification_report.txt", "w") as outfile:
+        outfile.write(report)
+    confmat = confusion_matrix(target, preds)
+    disp = ConfusionMatrixDisplay(
+        confusion_matrix=confmat,
+    )
+    plt.savefig("confusion_matrix.png")
+
 
 if __name__ == "__main__":
     train()
